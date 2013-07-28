@@ -8,9 +8,7 @@ module Jsoner
     end
 
     def row line=0
-      # remove tr of th 
-      trs.shift unless header.empty?
-      trs[line].search('td').map(&:content)
+      shift_tr && trs[line].search('td').map(&:content)
     end
 
     def header
@@ -22,6 +20,11 @@ module Jsoner
       # return all +tr+ elements of table
       def trs
         @table_rows ||= table.search('tr')
+      end
+
+      # remove first _tr_ included _th_
+      def shift_tr
+        trs.shift unless header.empty?
       end
   end
 end
