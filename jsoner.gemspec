@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Jsoner::VERSION
   spec.authors       = ["simlegate"]
   spec.email         = ["simlegate@163.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Serialize HTML tables into JSON in Ruby}
+  spec.summary       = %q{Serialize HTML tables into JSON in Ruby}
   spec.homepage      = ""
   spec.license       = "MIT"
 
