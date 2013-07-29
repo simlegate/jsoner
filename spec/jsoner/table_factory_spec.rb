@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/../fixtures/table"
+Dir["#{File.dirname(__FILE__)}/fixtures/*.rb"].each {|file| require file }
 require "#{File.dirname(__FILE__)}/../../lib/jsoner"
 
 describe 'build Hash below from doc parsed by Nokogiki' do
@@ -50,5 +50,29 @@ describe 'build Hash below from doc parsed by Nokogiki' do
      end
 
      # TODO testing when having no header in table
+  end
+
+  context "filter HTML" do
+    
+    before :each do
+      @ext_obj = Nokogiri::HTML.parse(table_extend_str)
+      @ext_factory = Jsoner::TableFactory.new(@ext_obj)
+    end
+
+    it "@ext_obj should have two tables" do
+      @ext_obj.search('table').count.should == 2
+    end
+
+    it "second table have no descendant nodes" do
+      @ext_obj.search('table').last.search('descendant').should be_empty
+    end
+
+    it "first table should have _th_ elements" do
+      @ext_obj.search('table').first.search('th').count.should  == 3
+    end
+
+    it "should get first table after search table default" do
+      @ext_factory.instance_variable_get(:@table_rows).search('tr').count.should ==5
+    end
   end
 end

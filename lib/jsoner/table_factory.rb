@@ -11,7 +11,7 @@ module Jsoner
   class TableFactory
 
     def initialize doc
-      @table_rows = doc.search('tr')
+      @table_rows = remove_housing(doc).search('tr')
     end
 
     def create
@@ -33,9 +33,13 @@ module Jsoner
       
       #
       # Remove other elements beside table and keep it clean
+      # Or keep one table when including more than two table elements in parsed HTML
       #
       # Example: 
       # <body>
+      #   <table>
+      #     // other elements
+      #   </table>
       #   <table>
       #     // other elements
       #   </table>
@@ -45,7 +49,8 @@ module Jsoner
       #   <table>
       #     // other elements
       #   </table>
-      def remove_housing
+      def remove_housing doc
+	doc.search('table').first
       end
   end 
 end
