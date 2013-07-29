@@ -29,6 +29,18 @@ module Jsoner
       end
     end
 
+    # 
+    # check whether table is full
+    # a full table should include +th+, +td+, +tr+ elements
+    def self.check doc
+      table = doc.search('table').first
+      unless table.search('tr').empty? || table.search('td').empty? || table.search('th').empty?
+        TableFactory.new doc
+      else
+	raise Jsoner::NotFullTable
+      end
+    end
+
     private
       
       #
