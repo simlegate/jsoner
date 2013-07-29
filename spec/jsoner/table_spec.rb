@@ -1,31 +1,41 @@
-require "#{File.dirname(__FILE__)}/../fixtures/table"
+Dir["#{File.dirname(__FILE__)}/fixtures/*.rb"].each {|file| require file }
 require "#{File.dirname(__FILE__)}/../../lib/jsoner"
 
 describe "parse structure of table" do
 
   before :each do
-    @nokogiri_obj = Nokogiri::HTML.parse(table_str)
-    @table = Jsoner::Table.new(@nokogiri_obj)
+    obj = Nokogiri::HTML.parse(table_str)
+    factory = Jsoner::TableFactory.new(obj)
+    @table = Jsoner::Table.new(factory)
+  end
+  
+  context "the number of row beside header in table" do
+    it "should == 4 " do
+      @table.row_number.should == 4
+    end
   end
 
-  it "should return header of table" do
-    @table.header.should == ["First Name", "Last Name", "Points"] 
-  end
-
-  it "should return all data of first column default" do
-    @table.row.should ==  ["Jill", "Smith", "50"]
-  end
-
-  context "should remove tr of th when search +tr+ with Nokogiri" do
-    it "header exists" do
-      @table.send(:shift_tr).search('th').map(&:content).should == ["First Name", "Last Name", "Points"]
-    # why ?
-    # @table.send(:shift_tr).children.map(&:content).should == ["First Name", "Last Name", "Points"]
+  context "convert Hash from factory" do
+    it "_convert_ should private method" do
+      expect{ @table.convert }.to raise_error NoMethodError
     end
 
-    it "header does not exists" do
-      # TODO simulate no-header table
-      # @table.send(:shift_tr).should be_nil
+    it "should be instance of Array" do
+      @table.send(:convert).should be_instance_of Array
+    end
+
+    it "everyone should be instance of Hash in Array" do
+      @table.send(:convert).map{ |h| h.should be_instance_of Hash}
+    end
+
+    it "everyone should have keys including _First Name_,_Last Name_,_Score_ in Array" do
+      @table.send(:convert).map{ |h| h.should have_key "First Name"}
+      @table.send(:convert).map{ |h| h.should have_key "Last Name"}
+      @table.send(:convert).map{ |h| h.should have_key "Points"}
+    end
+
+    it "match full data" do
+      @table.send(:convert).should == pre_json
     end
   end
 end
