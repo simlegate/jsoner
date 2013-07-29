@@ -1,0 +1,12 @@
+rvm:
+  - 1.9.3
+
+script: "bundle exec rspec spec/observer"
+
+notifications:
+  email:
+    - simlegate@163.com
+
+branches:
+  only:
+    - master
