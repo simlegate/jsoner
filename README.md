@@ -1,6 +1,6 @@
 # Jsoner
 
-Serialize HTML tables into JSON in Ruby.
+Serialize HTML tables into JSON in Ruby.  
 [![Build Status](https://travis-ci.org/simlegate/jsoner.png?branch=master)](https://travis-ci.org/simlegate/jsoner)
 
 ## Installation
