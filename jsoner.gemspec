@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["simlegate@163.com"]
   spec.description   = %q{Serialize HTML tables into JSON in Ruby}
   spec.summary       = %q{Serialize HTML tables into JSON in Ruby}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/simlegate/jsoner"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
