@@ -37,7 +37,7 @@ module Jsoner
       unless table.search('tr').empty? || table.search('td').empty? || table.search('th').empty?
         TableFactory.new doc
       else
-	raise Jsoner::NotFullTable
+	raise Jsoner::NotFullTable, 'Incomplete HTML Table'
       end
     end
 

@@ -5,3 +5,6 @@
 ## v0.0.3
 * parse HTML file including HTML Table
 * fixing file is empty or have no table element
+
+## v0.0.4
+* Add rspec test of checking integrity of HTML table
