@@ -7,14 +7,17 @@ require 'nokogiri'
 module Jsoner
 
   class NotFullTable < StandardError
+    def message
+      'Incomplete HTML Table'
+    end
   end
 
   class << self
 
     def parse(html)
       html = filter(html)
-      if factory = Jsoner::TableFactory.check(Nokogiri::HTML.parse(html))
-        Jsoner::Table.new(factory).to_json
+      if factory = TableFactory.check(Nokogiri::HTML.parse(html))
+        Table.new(factory).to_json
       end
     end
    
