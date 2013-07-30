@@ -65,8 +65,9 @@ json = Jsoner.parse(html)
 Or, `Jsoner` can parse HTML file including HTML table
 
 ```ruby
-  # you must have table.html file and assign file path correctly.
-  table = Jsoner.parse('table.html')
+# you must have table.html file and assign file path correctly.
+
+table = Jsoner.parse('table.html')
 ```
 ## THANKS
 
