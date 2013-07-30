@@ -52,6 +52,29 @@ describe 'build Hash below from doc parsed by Nokogiki' do
      # TODO testing when having no header in table
   end
 
+  context "check integrity of HTML table" do
+
+    it "when having no tr element" do
+      doc = Nokogiri::HTML.parse(no_tr_table)
+      expect{ Jsoner::TableFactory.check(doc) }.to raise_error Jsoner::NotFullTable
+    end
+
+    it "when having no td element" do
+      doc = Nokogiri::HTML.parse(no_td_table)
+      expect{ Jsoner::TableFactory.check(doc) }.to raise_error Jsoner::NotFullTable
+    end
+
+    it "when having no th element" do
+      doc = Nokogiri::HTML.parse(no_th_table)
+      expect{ Jsoner::TableFactory.check(doc) }.to raise_error Jsoner::NotFullTable
+    end
+
+    it "should return factory if integrity" do
+      doc = Nokogiri::HTML.parse(table_str)
+      Jsoner::TableFactory.check(doc).should be_instance_of Jsoner::TableFactory
+    end
+  end
+
   context "filter HTML" do
     
     before :each do
