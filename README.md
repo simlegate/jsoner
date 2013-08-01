@@ -61,7 +61,6 @@ json = Jsoner.parse(html)
 #     {"First Name"=>"Adam", "Last Name"=>"Johnson", "Points"=>"67"} ]
 
 ```
-
 Or, `Jsoner` can parse HTML file including HTML table
 
 ```ruby
@@ -77,15 +76,18 @@ table = Jsoner.parse(open('table.html'))
 #     {"First Name"=>"John", "Last Name"=>"Doe",     "Points"=>"80"},
 #     {"First Name"=>"Adam", "Last Name"=>"Johnson", "Points"=>"67"} ]
 
+```
+
 Or you can open Link
+
+```ruby
+require 'open-uri'
 
 table = Jsoner.parse(open('http://www.w3school.com.cn/tiy/t.asp?f=html_table_header'))
 
 # output json => 
 #
 # [{"姓名"=>"Bill Gates", "电话"=>"555 77 855"}]
-
-
 ```
 ## THANKS
 
