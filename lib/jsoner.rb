@@ -15,7 +15,7 @@ module Jsoner
   class << self
 
     def parse(html)
-      html = filter(html)
+#     html = filter(html)
       if factory = TableFactory.check(Nokogiri::HTML.parse(html))
         Table.new(factory).to_json
       end
