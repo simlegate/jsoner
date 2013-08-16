@@ -10,3 +10,6 @@
 * Add rspec test of checking integrity of HTML table
 * Supply exception message of NotFullTable
 * Parse Link including HTML Table
+
+## v0.1.0
+* Support Ruby 2.0.0
